@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <link rel="stylesheet"
+          href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
+          integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
+          crossorigin="anonymous">
+    <title>FastCar</title>
+
+</head>
+<body>
+
+<div layout:fragment="content" align="center">
+    <a th:if="${userContext.poswiadczeniaUzytkownika.isEmpty()}" th:href="@{/zaloguj}" class="btn btn-primary"><i
+            class="fas fa-user"> Zaloguj się </i></a>
+    <a th:if="${userContext.poswiadczeniaUzytkownika.isEmpty()}" th:href="@{/zarejestruj}" class="btn btn-primary"><i
+            class="fas fa-users"> Zarejestruj się </i></a>
+    <a th:if="${!userContext.poswiadczeniaUzytkownika.isEmpty()}" th:href="@{/wyloguj}" class="btn btn-danger"><i
+            class="fas fa-sign-out-alt"> Wyloguj </i></a>
+    <br><br><a th:if="${!userContext.poswiadczeniaUzytkownika.isEmpty()}" th:href="@{/boss}" class="btn btn-success"><i
+            class="fas fa-dollar-sign"> Panel Właściciela </i></a>
+    <section class="my-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+
+
+                    <h1>Witamy w wypożyczalni FastCar</h1>
+                    <p> Jesteśmy oficjalnym partnerem marki SIXT. <br/>
+                        Co tydzień w naszej ofercie znajdziecie państwo odświeżoną gamę pojazdów nowoczesnych oraz zabytkowych.<br/>
+                    Służymy Wam niezawodną flotą bez względu na to czy potrzebujesz sprawnego miejskiego auta, czy youngtimera do wyjazdu na weekend.</p>
+                    <p class="my-5">
+                        <a href="/pojazdy" class="btn btn-primary"><i
+                                class="fas fa-car fa-1x" style="color:lightgray"><br>SPRAWDŹ NASZĄ OFERTĘ</i></a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+</body>
+</html>

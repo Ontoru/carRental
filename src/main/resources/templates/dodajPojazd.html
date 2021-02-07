@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>Login - Shopme Admin</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+          crossorigin="anonymous" />
+</head>
+<body>
+<div class="container-fluid text-center">
+    <div>
+        <img class="img-fluid" th:src="${'https://www.lufthansa.com/content/dam/lh/images/local_images/ancillary/lh_anc_car_pano_XL_en.jpg.transform/lh-dcep-transform-width-1440/img.jpg'}" />
+    </div>
+    <form th:action="@{/dodajPojazd}" method="post" th:object="${carData}" style="max-width: 350px; margin: 0 auto;">
+        <div class="border border-secondary p-3 rounded">
+            <p><b>DODAJ POJAZD</b></p>
+            <p>
+                <input type="text" name="marka" th:field="*{brand}" class="form-control" placeholder="Marka" required autofocus/>
+            </p>
+            <p>
+                <input type="text" name="model" th:field="*{model}" class="form-control" placeholder="Model" required />
+            </p>
+            <p>
+                <input type="number" name="moc" th:field="*{power}" class="form-control" placeholder="Moc"  required />
+            </p>
+            <p>
+                <input type="number" name="średnie spalanie" th:field="*{avergeConsumption}" class="form-control" maxlength="9", minlength="9" placeholder="Średnie spalanie" required />
+            </p>
+            <p>
+                <input type="number" name="cena za dobę" th:field="*{dailyAmount}" class="form-control" placeholder="Cena za dobę" required autofocus/>
+            </p>
+            <p>
+                <input type="url" name="miniaturka" th:field="*{imageUrl}" class="form-control" placeholder="Url" required />
+            </p>
+            <p>
+                <input type="submit" value="Dodaj" class="btn btn-success"  th:href="@{/}"/>
+            </p>
+        </div>
+    </form>
+</div>
+</body>
+</html>

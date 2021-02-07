@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title layout:title-pattern="$CONTENT_TITLE - $LAYOUT_TITLE"></title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+</head>
+<body>
+
+<!-- Main Navigation -->
+<nav class="navbar navbar-expand-md navbar-dark bg-primary">
+    <a class="navbar-brand" th:href="@{/}">FastCar</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar"
+            aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbar">
+
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="navbar-brand" th:href="@{/contact}">KONTAKT</a>
+            </li>
+            <li class="nav-item">
+                <a class="navbar-brand" th:href="@{/about}">O NAS</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div>
+    <img  class="center"
+         th:src="${'https://www.lufthansa.com/content/dam/lh/images/local_images/ancillary/lh_anc_car_pano_XL_en.jpg.transform/lh-dcep-transform-width-1440/img.jpg'}"/>
+</div>
+<section layout:fragment="content">
+    <p>This is filled by the content template.</p>
+</section>
+
+    <footer id="footer"><p class="text-muted" align="center">&copy; FastCar 2021</p></footer>
+
+
+</body>
+<style>
+    #footer {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        height: 2rem;
+    }
+    .center {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 50%;
+    }
+</style>
+
+</html>
+

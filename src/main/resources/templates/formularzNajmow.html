@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Users</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+    <link rel="stylesheet"
+          href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
+          integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
+          crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="../css/shards.min.css"> -->
+</head>
+<body>
+
+<div class="container my-2" id="form">
+    <div>
+        <img class="img-fluid"
+             th:src="${'https://www.lufthansa.com/content/dam/lh/images/local_images/ancillary/lh_anc_car_pano_XL_en.jpg.transform/lh-dcep-transform-width-1440/img.jpg'}"/>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <div th:switch="${pojazdDoWynajecia}" class="container my-5">
+                <h2 style="text-align:center"> PODSUMOWANIE </h2>
+                <div class="col-md-14">
+                    <h2 th:case="null">Brak pojazdów w bazie!</h2>
+                    <div th:case="*">
+                        <form th:action="@{/potwierdz/{id} (id=${pojazdDoWynajecia.id})}" method="post"
+                              th:object="${transferData}">
+                            <table class="table table-striped table-responsive-md center">
+                                <thead>
+                                <tr>
+                                    <th>Marka</th>
+                                    <th>Model</th>
+                                    <th>Moc [KM]</th>
+                                    <th>Srednie spalanie [L/100 km]</th>
+                                    <th>Cena za dobę [PLN]</th>
+                                    <th>Zdjecie</th>
+                                    <th>Ilość dni</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td th:text="${pojazdDoWynajecia.marka}"></td>
+                                    <td th:text="${pojazdDoWynajecia.model}"></td>
+                                    <td th:text="${pojazdDoWynajecia.moc}"></td>
+                                    <td th:text="${pojazdDoWynajecia.srednieSpalanie}"></td>
+                                    <td th:text="${pojazdDoWynajecia.cenaZaDobe}"></td>
+                                    <td><a th:href="${pojazdDoWynajecia.miniaturka}"><img
+                                            th:src="${pojazdDoWynajecia.miniaturka}" th:width="200"
+                                            th:height="124"/></a></td>
+                                    <td><input type="number" id="iloscDni" th:field="${transferData.iloscDni}" min="1"
+                                               max="7"/></td>
+<!--                                    <td>-->
+<!--                                        <button class="btn btn-primary" th:onclick="'javascript:Komunikat()'"><i-->
+<!--                                                class="fas fa-shopping-cart"></i></button>-->
+
+<!--                                    </td>-->
+                                </tr>
+                                </tbody>
+                            </table>
+                            <div style="text-align:center"> <button class="btn btn-primary"  th:onclick="'javascript:Komunikat()'"><i
+                                    class="fas fa-key fa-2x"> WYPOŻYCZ</i></button></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<input type="hidden" th:default="${pojazdDoWynajecia.cenaZaDobe}" th:field="${pojazdDoWynajecia.cenaZaDobe}"
+       id="hidden"/>
+<script type="text/javascript">
+    function Komunikat() {
+        var iloscDni = document.getElementById("iloscDni").value;
+        var cenaZaDzien = document.getElementById("hidden").value;
+        alert("Z twojej karty zostało pobrane ".concat(iloscDni * cenaZaDzien, " zł.", "\nZAPRASZAMY PO ODBIÓR POJAZDU"));
+    }
+</script>
+</body>
+</html>
